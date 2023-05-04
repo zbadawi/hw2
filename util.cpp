@@ -16,14 +16,24 @@ std::string convToLower(std::string src)
 std::set<std::string> parseStringToWords(string rawWords)
 {
 
+    set<std::string> words;
 
+    for (int i=0; i < rawWords.size(); i++) {
+        if (ispunct(rawWords[i])) {
+            rawWords[i] = ' ';
+        }
+    }
 
+    stringstream ss(rawWords);
 
+    string word;
+    while (ss >> word){
+        if (word.size() >=2){
+            words.insert(word);
+        }
+    }
 
-
-
-
-
+    return words;
 
 }
 

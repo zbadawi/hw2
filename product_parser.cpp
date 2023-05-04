@@ -101,8 +101,10 @@ Product* ProductBookParser::parseSpecificProduct(std::string category,
     }
 
     lineno++;
-    getline(is, author_);
-    if(is.fail()) {
+    getline(is, myline); //edited this from getline (is, author_)
+    stringstream ss4(myline); //inserted this line
+    ss4 >> author_; //inserted this line
+    if(ss4.fail()) { //edited this line from is.fail()
         error = true;
         errorMsg = "Unable to read author";
         return NULL;
@@ -130,7 +132,9 @@ std::string ProductBookParser::categoryID()
  */
 Product* ProductBookParser::makeProduct()
 {
+    Book* product = new Book(this->categoryID(), prodName_, price_, qty_, isbn_, author_);
 
+    return product;
 
 }
 
@@ -185,8 +189,9 @@ std::string ProductClothingParser::categoryID()
  */
 Product* ProductClothingParser::makeProduct()
 {
+    Clothing* product = new Clothing(this->categoryID(), prodName_, price_, qty_, size_, brand_);
 
-
+    return product;
 
 }
 
@@ -245,6 +250,8 @@ std::string ProductMovieParser::categoryID()
  */
 Product* ProductMovieParser::makeProduct()
 {
+    Movie* product = new Movie(this->categoryID(), prodName_, price_, qty_, genre_, rating_);
 
+    return product;
 
 }
