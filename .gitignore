@@ -1,0 +1,6 @@
+*.o
+*.log
+output.txt
+test
+test.cpp
+.vscode/
