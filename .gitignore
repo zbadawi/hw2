@@ -1,6 +1,6 @@
 *.o
 *.log
-output.txt
+*.output.txt
 test
-test.cpp
+test.*.cpp
 .vscode/
