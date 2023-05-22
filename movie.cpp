@@ -13,7 +13,7 @@ Product(category, name, price, qty), genre_(genre), rating_(rating)
 }
 
 Movie :: ~Movie() {
-    //IMPLEMENT??
+    //IMPLEMENT
 }
 
 set<string> Movie :: keywords() const {
@@ -21,13 +21,16 @@ set<string> Movie :: keywords() const {
     set<string> name = parseStringToWords (this->name_);
     set<string> genre = parseStringToWords(this->genre_);
     
-    set_union(name.begin(), name.end(), genre.begin(), genre.end(), inserter(keywords, keywords.begin()));
+    set_union(name.begin(), name.end(), genre.begin(), genre.end(), inserter(keywords, keywords.begin())); //combines sets into one
 
     return keywords;
 }
 
 string Movie :: displayString() const {
-    string final = name_ + " " + genre_ + " " + rating_ ;
+    stringstream ss;
+    ss << name_ << "\n" << "Genre: " << genre_ << " Rating: " << rating_ << "\n" << price_ << " " << qty_ << " left." <<endl;
+    string final = ss.str();
+    
     return final;
 }
 

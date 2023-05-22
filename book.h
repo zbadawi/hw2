@@ -3,8 +3,6 @@
 #include <iostream>
 #include <string>
 #include <set>
-#include <vector>
-#include <algorithm>
 #include "product.h"
 
 class Book : public Product {
@@ -24,6 +22,9 @@ class Book : public Product {
     //accessors
     std::string getISBN() const;
     std::string getAuthor() const;
+
+    //for debugging
+    // friend ostream& operator<< (ostream& ostream, const Book &Book);
 
     protected:
     std::string ISBN_;

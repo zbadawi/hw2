@@ -9,8 +9,70 @@
 #include "db_parser.h"
 #include "product_parser.h"
 #include "util.h"
+#include "mydatastore.h"
+// //for personal debugging - printing keywords
+// #include "book.h"
+// #include "clothing.h"
+// #include "movie.h"
+
 
 using namespace std;
+
+/*for personal debugging - printing keywrds of a product
+ostream& operator<< (ostream& os, const Product &Product) {
+    os << "keywords: ";
+
+    set<string> words = Product.keywords();
+
+    for (auto word : words) {
+        os << word << " ";
+    }
+
+    os << endl;
+
+    return os;
+}
+
+//for personal debugging - printing set
+void printSet(ostream& os, const set<string>& s) {
+    for (const string& item : s) {
+        os << item << " ";
+    }
+
+    os << endl;
+}
+
+//for personal debugging - print products set
+void printProdSet (ostream& os, const set<Product*>& s){
+    for (auto product : s){
+        os << "Product: " << product->getName() << endl;
+        os << "Qty: " << product->getQty() << endl;
+    }
+
+    os << endl;
+}
+//for personal debugging - print index map
+void printMap(ostream& os, const map<string, set<Product*>>& m) {
+    for (const auto& [keyword, products] : m) {
+        os << keyword << ": " << endl;
+        for (const auto& product : products) {
+            os << "  " << product->getName() << ", " << product->getPrice() << std::endl;
+        }
+    }
+}
+
+//for personal debugging - print cart map
+void printMap(ostream& os, const map<User*, vector<Product*>>& m) {
+    for (const auto& [user, products] : m) {
+        os << "User: " << user->getName() << ", " << "Balance: " << user->getBalance() << endl;
+        for (const auto& product : products) {
+            os << "  " << "Product: " << product->getName() << ", " << "Price: " << product->getPrice() << ", " << "Qty: " << product->getQty() << std::endl;
+        }
+    }
+}
+
+end of personal debugging */
+
 struct ProdNameSorter {
     bool operator()(Product* p1, Product* p2) {
         return (p1->getName() < p2->getName());
@@ -29,7 +91,7 @@ int main(int argc, char* argv[])
      * Declare your derived DataStore object here replacing
      *  DataStore type to your derived type
      ****************/
-    DataStore ds;
+    MyDS ds;
 
 
 
@@ -72,22 +134,22 @@ int main(int argc, char* argv[])
         if((ss >> cmd)) {
             if( cmd == "AND") {
                 string term;
-                vector<string> terms;
+                vector<string> terms_;
                 while(ss >> term) {
                     term = convToLower(term);
-                    terms.push_back(term);
+                    terms_.push_back(term);
                 }
-                hits = ds.search(terms, 0);
+                hits = ds.search(terms_, 0);
                 displayProducts(hits);
             }
             else if ( cmd == "OR" ) {
                 string term;
-                vector<string> terms;
+                vector<string> terms_;
                 while(ss >> term) {
                     term = convToLower(term);
-                    terms.push_back(term);
+                    terms_.push_back(term);
                 }
-                hits = ds.search(terms, 1);
+                hits = ds.search(terms_, 1);
                 displayProducts(hits);
             }
             else if ( cmd == "QUIT") {
@@ -99,7 +161,20 @@ int main(int argc, char* argv[])
                 }
                 done = true;
             }
-	    /* Add support for other commands here */
+            else if (cmd == "ADD") {
+                string uname;
+                int hnum;
+                ss >> uname >> hnum;
+                ds.addToCart(uname, hits, hnum);
+            } else if (cmd == "VIEWCART") {
+                string uname;
+                ss >> uname;
+                ds.displayCart(uname);
+            } else if (cmd == "BUYCART") {
+                string uname;
+                ss >> uname;
+                ds.buyCart(uname);
+            }
 
 
 

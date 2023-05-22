@@ -16,7 +16,7 @@ ProductParser::ProductParser()
 
 ProductParser::~ProductParser()
 {
-
+    //IMPLEMENT?
 }
 
 
@@ -101,10 +101,10 @@ Product* ProductBookParser::parseSpecificProduct(std::string category,
     }
 
     lineno++;
-    getline(is, myline); //edited this from getline (is, author_)
-    stringstream ss4(myline); //inserted this line
-    ss4 >> author_; //inserted this line
-    if(ss4.fail()) { //edited this line from is.fail()
+    getline(is, author_); //edited this from getline (is, author_) - edited this from getline(is, myline)
+    // stringstream ss4(myline); //inserted this line - removed this line
+    // ss4 >> author_; //inserted this line - removed this line
+    if(is.fail()) { //edited this line from is.fail() - edited from ss4.fail()
         error = true;
         errorMsg = "Unable to read author";
         return NULL;

@@ -31,6 +31,9 @@ public:
      */
     virtual void dump(std::ostream& os) const;
 
+    //for debugging - printing kewywords
+    friend std::ostream& operator<< (std::ostream& ostream, const Product &Product);
+
     /**
      * Accessors and mutators
      */

@@ -14,23 +14,25 @@ Product(category, name, price, qty), ISBN_(ISBN), author_(author)
 }
 
 Book :: ~Book() {
-    //IMPLEMENT??
+    //IMPLEMENT
 }
 
 set<string> Book :: keywords() const {
     set<string> keywords;
-    set<string> name = parseStringToWords(this -> name_);
-    set<string> ISBN = parseStringToWords (this->ISBN_);
+    set<string> name = parseStringToWords(this->name_);
     set<string> author = parseStringToWords (this->author_);
 
-    set_union(name.begin(), name.end(), ISBN.begin(), ISBN.end(), inserter(keywords, keywords.begin()));
-    set_union(keywords.begin(), keywords.end(), author.begin(), author.end(), inserter(keywords, keywords.begin()));
+    set_union(name.begin(), name.end(), author.begin(), author.end(), inserter(keywords, keywords.begin()));//combines sets into one
+
+    keywords.insert(ISBN_); //insert ISBN as is
 
     return keywords;
 }
 
 string Book :: displayString() const {
-    string final = name_ + " " + ISBN_ + " " + author_ ;
+    stringstream ss;
+    ss << name_ << "\n" << "Author: " << author_ << " ISBN: " << ISBN_ << "\n" << price_ << " " << qty_ << " left." << endl;
+    string final = ss.str();
     return final;
 }
 

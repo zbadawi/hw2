@@ -3,8 +3,6 @@
 #include <iostream>
 #include <string>
 #include <set>
-#include <vector>
-#include <algorithm>
 #include "product.h"
 
 class Clothing : public Product {
@@ -24,6 +22,9 @@ class Clothing : public Product {
     //accessors
     std::string getSize() const;
     std::string getBrand() const;
+
+    //for debugging - printing keywords
+    // friend ostream& operator<< (ostream& ostream, const Clothing &Clothing);
 
     protected:
     std::string size_;

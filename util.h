@@ -15,10 +15,12 @@ std::set<T> setIntersection(std::set<T>& s1, std::set<T>& s2)
 {
     std::set<T> result;
 
+    //in order to decrease the size of the set we iterate through
     std::set<T>& smallerSet = (s1.size() < s2.size()) ? s1 : s2;
     std::set<T>& largerSet = (s2.size() < s1.size()) ? s2 : s1;
-
-    for (typename set<T>::iterator it = 0; it < smallerSet.size(), it++) {
+    
+    typename std::set<T>::iterator it;
+    for (it= smallerSet.begin(); it != smallerSet.end(); ++it) {
         if (largerSet.find(*it) != largerSet.end()) {
             result.insert(*it);
         }
@@ -26,6 +28,7 @@ std::set<T> setIntersection(std::set<T>& s1, std::set<T>& s2)
 
     return result;
 }
+
 template <typename T>
 std::set<T> setUnion(std::set<T>& s1, std::set<T>& s2)
 {
