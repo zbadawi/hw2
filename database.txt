@@ -12,20 +12,47 @@ Great Men and Women of Troy
 978-000000000-1
 Tommy Trojan
 clothing
-Men's Fitted Shirt
+Men's Great Fitted Shirt
 39.99
 25
 Medium
-J. Crew
+Fruit of the Loom
 movie
 Hidden Figures DVD
 17.99
 1
 Drama
 PG
+book
+James and the Giant Peach. they're wow!
+1000.99
+2
+123456789
+Roald Dahl
+clothing
+Men's Crew-Neck T-shirts
+27.95
+74
+teeny weeny
+The GAP (YZY)
+movie
+She's Shutter Island
+5.34
+66
+Psychological Thriller
+R
+book
+Statistics and Figures: Graphing Fruit Sales
+9.0003
+222
+434343-4
+El Fakahani
 </products>
 <users>
 aturing 100.00 0
-johnvn 50.00 1
+johnvn 150.00 1
 adal 120.00 1
+zeina 600.00 1
+aimee 60000.00 1
+aastha 7453.99 0
 </users>
